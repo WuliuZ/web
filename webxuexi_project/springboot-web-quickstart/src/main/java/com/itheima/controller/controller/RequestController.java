@@ -73,5 +73,9 @@ public class RequestController {
         return "ok";
     }
     //    多个路径参数
-
+    @RequestMapping("/path/{id}/{name}")
+    public String pathParam2(@PathVariable Integer id,@PathVariable String name){
+        System.out.println(id+":"+name);
+        return "ok";
+    }
 }
