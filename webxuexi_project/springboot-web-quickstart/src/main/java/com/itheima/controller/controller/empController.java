@@ -7,6 +7,8 @@ import com.itheima.dao.impl.EmpDaoA;
 import com.itheima.service.EmpService;
 import com.itheima.service.impl.EmpServiceA;
 import com.itheima.utils.XmlParserUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +16,13 @@ import java.util.List;
 
 @RestController
 public class empController {
-    private EmpService empService= new EmpServiceA();
+//    private EmpService empService= new EmpServiceA();
+    //解耦
+//    1、于实现类前添加@Primary
+//    2、@Autowired+@Qualifier("bean的名称“）
+//    3、@Resource(name="bean的名称")
+    @Autowired
+    private EmpService empService;
     @RequestMapping("/listEmp")
     public Result list(){
     //1、调用service，获取数据
