@@ -8,14 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="springboot-web-quickstart" />
         <module name="mave-project01" />
+        <module name="springboot-mybatis-quickstart" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8">
-      <module name="springboot-mybatis-quickstart" target="21" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="21" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot-mybatis-quickstart" options="-parameters" />
       <module name="springboot-web-quickstart" options="-parameters" />
     </option>
   </component>
