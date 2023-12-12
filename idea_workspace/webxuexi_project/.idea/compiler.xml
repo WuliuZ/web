@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="springboot-web-quickstart" />
+        <module name="springboot-tlias" />
         <module name="mave-project01" />
         <module name="springboot-mybatis-quickstart" />
+        <module name="springboot-web-quickstart" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="21" />
@@ -16,6 +17,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="springboot-mybatis-quickstart" options="-parameters" />
+      <module name="springboot-tlias" options="-parameters" />
       <module name="springboot-web-quickstart" options="-parameters" />
     </option>
   </component>

@@ -1,8 +1,7 @@
 package com.itheima.mapper;
 
-import com.itheima.pojo.User;
+import com.itheima.Pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
