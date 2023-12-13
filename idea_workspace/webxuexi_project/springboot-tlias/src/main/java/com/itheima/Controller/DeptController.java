@@ -5,6 +5,7 @@ import com.itheima.Pojo.Result;
 import com.itheima.Service.DeptService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class DeptController {
 
     @GetMapping("/depts")
     public Result list(){
-    log.info("查询全部部分数据");//记录日志
+    log.info("查询全部部门数据");//记录日志
 
 
 //        调用Service接口的方法进行查询
@@ -45,4 +46,17 @@ public class DeptController {
         deptService.add(dept);
         return Result.success();
  }
+ @GetMapping("/depts/{id}")
+    public Result queryById(@PathVariable Integer id){
+    Dept dept = deptService.queryById(id);
+     log.info("根据id查询部门：{}",id);
+    return Result.success(dept);
+    }
+
+    @PutMapping("/depts")
+    public Result modifyById(@RequestBody Dept dept){
+        log.info("根据id修改部门：{}",dept);
+        deptService.modifyById(dept);
+        return Result.success();
+    }
 }
