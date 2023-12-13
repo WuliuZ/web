@@ -19,12 +19,11 @@ public class EmpServiceImpl implements EmpService {
     public PageBean page(Integer page,Integer pageSize) {
 //1、设置分页参数
         PageHelper.startPage(page,pageSize);
-
 //2、查询
         List<Emp> empList=empmapper.list();
-        Page<Emp> pa=(Page<Emp>)empList;
+        Page<Emp> p=(Page<Emp>) empList;
 //        封装pageBean
-        PageBean pageBean=new PageBean(pa.getTotal(),pa.getResult());
+        PageBean pageBean =new PageBean(p.getTotal(), p.getResult());
 
 
         return pageBean;
