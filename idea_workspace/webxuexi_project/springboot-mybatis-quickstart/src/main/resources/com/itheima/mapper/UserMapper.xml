@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.itheima.mapper.UserMapper">
+<mapper namespace="com.itheima.Mapper.EmpMapper">
     <select id="list" resultType="com.itheima.Pojo.User">
         select * from user
 

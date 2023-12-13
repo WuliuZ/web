@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.Mapper.EmpMapper">
+
+    <!--  动态sql 条件查找-->
+    <select id="list" resultType="com.itheima.Pojo.Emp">
+        select *
+        from tlias.emp
+        <where>
+            <if test="name!=null and name != ''">
+                name like concat('%', #{name}, '%')
+            </if>
+            <if test="gender!=null">
+                and gender = #{gender}
+            </if>
+            <if test="begin!=null and end!=null">
+            and entrydate between #{begin} and #{end}
+            </if>
+        </where>
+            order by update_time desc
+
+
+    </select>
+
+<!--    批量删除员工-->
+    <delete id="deleteByIds">
+        delete
+        from tlias.emp
+        where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+<!--    新增员工-->
+    <insert id="addEmp">
+        insert into tlias.emp(username, name, gender, image, job, entrydate, dept_id, create_time, update_time)
+            value (#{username}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime},
+                   #{updateTime})
+    </insert>
+
+</mapper>
