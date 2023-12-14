@@ -21,6 +21,7 @@ public class EmpController {
     @Autowired
     private EmpService empService;
 
+//    按条件查询员工
     @GetMapping
     public Result page(Integer page, Integer pageSize, String name, Short gender,
                        @DateTimeFormat(pattern = "yyyy-mm-dd") LocalDate begin,
@@ -36,6 +37,7 @@ public class EmpController {
         return Result.success(pageBean);
     }
 
+//    按id批量删除员工
     @DeleteMapping("/{ids}")
     public Result deleteByIds(@PathVariable List<Integer> ids) {
         log.info("批量删除操作，ids：{}",ids);
@@ -43,6 +45,8 @@ public class EmpController {
 
         return Result.success();
     }
+
+//    新增员工
     @PostMapping
     public Result addEmp(@RequestBody Emp emp){
         log.info("新增员工，emp：{}",emp);
@@ -51,4 +55,6 @@ public class EmpController {
         return Result.success();
     }
 
+//    修改员工信息
+    public 
 }
