@@ -56,5 +56,20 @@ public class EmpController {
     }
 
 //    修改员工信息
-    public 
+//    1、根据id回显已有的员工信息
+
+    @GetMapping("{id}")
+    public Result getById(@PathVariable Integer id){
+        log.info("根据id查询到员工信息：{}",id);
+        Emp emp = empService.getById(id);
+        return Result.success(emp);
+    }
+    //    2、根据提交的信息修改员工的信息
+    @PutMapping
+    public Result modifyById(@RequestBody Emp emp){
+        log.info("根据id修改的信息：{}",emp);
+        empService.modifyById(emp);
+        return Result.success();
+    }
+
 }

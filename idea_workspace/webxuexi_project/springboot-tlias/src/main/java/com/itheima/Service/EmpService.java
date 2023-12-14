@@ -20,4 +20,8 @@ public interface EmpService {
 
 //    新增员工操作
     void addEmp(Emp emp);
+//通过id回显员工信息
+    Emp getById(Integer id);
+//通过上传的信息，根据id更新员工信息
+    void modifyById(Emp emp);
 }
