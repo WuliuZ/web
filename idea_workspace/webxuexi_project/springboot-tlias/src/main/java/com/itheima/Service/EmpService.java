@@ -24,4 +24,7 @@ public interface EmpService {
     Emp getById(Integer id);
 //通过上传的信息，根据id更新员工信息
     void modifyById(Emp emp);
+
+//    查询登录用户的信息
+    Emp login(Emp emp);
 }

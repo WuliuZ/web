@@ -30,4 +30,8 @@ public interface EmpMapper {
 
  //根据所上传信息更新员工信息
     void modifyById(Emp emp);
+
+//    根据用户名和密码查询该员工
+    @Select("select * from tlias.emp where username=#{username} and password = #{password}")
+    Emp quaryByUsernameAndPassword(Emp emp);
 }
