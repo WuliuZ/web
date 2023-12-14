@@ -18,18 +18,19 @@ import java.util.List;
 public class EmpServiceImpl implements EmpService {
     @Autowired
     EmpMapper empmapper;
+
     @Override
-    public PageBean page(Integer page,Integer pageSize,
+    public PageBean page(Integer page, Integer pageSize,
                          String name, Short gender,
                          LocalDate begin,
                          LocalDate end) {
 //1、设置分页参数
-        PageHelper.startPage(page,pageSize);
+        PageHelper.startPage(page, pageSize);
 //2、查询
-        List<Emp> empList=empmapper.list(name,gender,begin,end);
-        Page<Emp> p=(Page<Emp>) empList;
+        List<Emp> empList = empmapper.list(name, gender, begin, end);
+        Page<Emp> p = (Page<Emp>) empList;
 //        封装pageBean
-        PageBean pageBean =new PageBean(p.getTotal(), p.getResult());
+        PageBean pageBean = new PageBean(p.getTotal(), p.getResult());
 
 
         return pageBean;
@@ -61,6 +62,6 @@ public class EmpServiceImpl implements EmpService {
 
     @Override
     public Emp login(Emp emp) {
-        return  empmapper.quaryByUsernameAndPassword(emp);
+        return empmapper.quaryByUsernameAndPassword(emp);
     }
 }
