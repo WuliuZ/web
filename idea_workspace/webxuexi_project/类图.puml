@@ -1,0 +1,163 @@
+@startuml
+class com.itheima.Exception.GlobalExceptionHandler {
++ Result exception(Exception)
+}
+class com.itheima.Config.WebConfig {
+- LoginCheckinterceptor loginCheckinterceptor
++ void addInterceptors(InterceptorRegistry)
+}
+
+class com.itheima.Interceptor.LoginCheckinterceptor {
++ boolean preHandle(HttpServletRequest,HttpServletResponse,Object)
++ void postHandle(HttpServletRequest,HttpServletResponse,Object,ModelAndView)
++ void afterCompletion(HttpServletRequest,HttpServletResponse,Object,Exception)
+}
+class com.itheima.Controller.UploadController {
+~ AliOSSUtils aliOSSUtils
++ Result upload(MultipartFile)
+}
+class com.itheima.Controller.EmpController {
+- EmpService empService
++ Result page(Integer,Integer,String,Short,LocalDate,LocalDate)
++ Result deleteByIds(List<Integer>)
++ Result addEmp(Emp)
++ Result getById(Integer)
++ Result modifyById(Emp)
+}
+class com.itheima.Controller.DeptController {
+- DeptService deptService
++ Result list()
++ Result delete(Integer)
++ Result add(Dept)
++ Result queryById(Integer)
++ Result modifyById(Dept)
+}
+class com.itheima.Controller.LoginController {
+- EmpService empService
++ Result login(Emp)
+}
+
+interface com.itheima.Service.DeptService {
+~ List<Dept> list()
+~ void delete(Integer)
+~ void add(Dept)
+~ Dept queryById(Integer)
+~ void modifyById(Dept)
+}
+interface com.itheima.Service.EmpService {
+~ PageBean page(Integer,Integer,String,Short,LocalDate,LocalDate)
+~ void deleteByIds(List<Integer>)
+~ void addEmp(Emp)
+~ Emp getById(Integer)
+~ void modifyById(Emp)
+~ Emp login(Emp)
+}
+class com.itheima.Service.impl.DeptServiceImpl {
+- DeptMapper deptMapper
+- EmpMapper empMapper
++ List<Dept> list()
++ void delete(Integer)
++ void add(Dept)
++ Dept queryById(Integer)
++ void modifyById(Dept)
+}
+class com.itheima.Service.impl.EmpServiceImpl {
+~ EmpMapper empmapper
++ PageBean page(Integer,Integer,String,Short,LocalDate,LocalDate)
++ void deleteByIds(List<Integer>)
++ void addEmp(Emp)
++ Emp getById(Integer)
++ void modifyById(Emp)
++ Emp login(Emp)
+}
+interface com.itheima.Mapper.DeptMapper {
+~ List<Dept> list()
+~ void deleteById(Integer)
+~ void insert(Dept)
+~ Dept queryById(Integer)
+~ void modifyById(Dept)
+}
+interface com.itheima.Mapper.EmpMapper {
++ List<Emp> list(String,Short,LocalDate,LocalDate)
+~ void deleteByIds(List<Integer>)
+~ void addEmp(Emp)
+~ Emp getById(Integer)
+~ void modifyById(Emp)
+~ Emp quaryByUsernameAndPassword(Emp)
+~ void deleteByDeptId(Integer)
+}
+class com.itheima.Pojo.Result {
+- Integer code
+- String msg
+- Object data
++ {static} Result success()
++ {static} Result success(Object)
++ {static} Result error(String)
+}
+class com.itheima.Pojo.Emp {
+- Integer id
+- String username
+- String password
+- String name
+- Short gender
+- String image
+- Short job
+- LocalDate entrydate
+- Integer deptId
+- LocalDateTime createTime
+- LocalDateTime updateTime
+}
+class com.itheima.Pojo.Dept {
+- Integer id
+- String name
+- LocalDateTime createTime
+- LocalDateTime updateTime
+}
+class com.itheima.Pojo.PageBean {
+- long total
+- List rows
+}
+
+class com.itheima.utils.AliOSSUtils {
+- String endpoint
+- String accessKeyId
+- String accessKeySecret
+- String bucketName
++ String upload(MultipartFile)
+}
+class com.itheima.utils.JwtUtils {
+- {static} String signKey
+- {static} Long expire
++ {static} String generateJwt(Map<String,Object>)
++ {static} Claims parseJWT(String)
+}
+
+
+
+class com.itheima.SpringbootTliasApplication {
++ {static} void main(String[])
+}
+
+
+
+class com.itheima.SpringbootTliasApplicationTests {
+~ void contextLoads()
++ void testSetJWT()
++ void testJieXiJWT()
+}
+
+class com.itheima.Demo {
++ {static} void main(String[])
+}
+
+
+
+
+
+
+com.itheima.Service.EmpService <|.. com.itheima.Service.impl.EmpServiceImpl
+org.springframework.web.servlet.config.annotation.WebMvcConfigurer <|.. com.itheima.Config.WebConfig
+org.springframework.web.servlet.HandlerInterceptor <|.. com.itheima.Interceptor.LoginCheckinterceptor
+com.itheima.Service.DeptService <|.. com.itheima.Service.impl.DeptServiceImpl
+
+@enduml

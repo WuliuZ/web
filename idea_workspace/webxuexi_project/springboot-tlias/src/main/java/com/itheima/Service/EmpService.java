@@ -1,5 +1,6 @@
 package com.itheima.Service;
 
+import com.itheima.Pojo.Dept;
 import com.itheima.Pojo.Emp;
 import com.itheima.Pojo.PageBean;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -27,4 +28,5 @@ public interface EmpService {
 
 //    查询登录用户的信息
     Emp login(Emp emp);
+
 }

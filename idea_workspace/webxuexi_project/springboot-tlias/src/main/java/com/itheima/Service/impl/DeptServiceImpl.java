@@ -1,10 +1,13 @@
 package com.itheima.Service.impl;
 
 import com.itheima.Mapper.DeptMapper;
+import com.itheima.Mapper.EmpMapper;
 import com.itheima.Pojo.Dept;
 import com.itheima.Service.DeptService;
+import com.itheima.Service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,6 +16,8 @@ import java.util.List;
 public class DeptServiceImpl implements DeptService {
     @Autowired
     private DeptMapper deptMapper;
+    @Autowired
+    private EmpMapper empMapper;
 
     @Override
     public List<Dept> list() {
@@ -22,7 +27,10 @@ public class DeptServiceImpl implements DeptService {
 
     @Override
     public void delete(Integer id) {
+
         deptMapper.deleteById(id);
+
+        empMapper.deleteByDeptId(id);
     }
 
     @Override
@@ -38,8 +46,13 @@ public class DeptServiceImpl implements DeptService {
         return dept;
     }
 
+    @Transactional//spring事务管理
     @Override
     public void modifyById(Dept dept) {
+
         deptMapper.modifyById(dept);
+
+
+
     }
 }
